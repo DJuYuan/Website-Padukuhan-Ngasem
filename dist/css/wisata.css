@@ -1,0 +1,100 @@
+/* TAMBAHKAN BLOK CSS INI KE style.css ANDA */
+
+/* AWAL BAGIAN WISATA ELEGANT */
+
+.wisata-elegant {
+    /* background-color: var(--color-surface, #F8F9FA); Latar belakang abu-abu muda */
+    background-image: linear-gradient(#F8F9FA);
+    padding: 60px 0;
+}
+
+.wisata-item-elegant {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px; /* Jarak antara gambar dan teks */
+    align-items: center;
+    margin-bottom: 80px; /* Jarak antar item wisata */
+}
+.wisata-item-elegant:last-child {
+    margin-bottom: 0;
+}
+
+.wisata-elegant h1{
+    font-size: 2.8rem;
+    line-height: 1.25;
+    color: #245e36;
+    font-weight: 800;
+    padding-bottom: 60px;
+}
+
+.wisata-elegant h3{
+    color: #245e36;
+}
+
+/* Pola terbalik untuk item kedua */
+.wisata-item-elegant.reverse .wisata-image-wrapper {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+.wisata-item-elegant.reverse .wisata-text-wrapper {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.wisata-image-wrapper img {
+    width: 100%;
+    border-radius: 15px;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.wisata-text-wrapper {
+    padding: 20px 0;
+}
+
+.wisata-title {
+    font-family: var(--font-heading, 'Poppins', sans-serif);
+    font-size: 2.2rem;
+    color: var(--color-text, #212529);
+    margin-bottom: 15px;
+}
+
+.wisata-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary, #6c757d);
+    margin-bottom: 25px;
+}
+
+.wisata-link {
+    color: var(--color-accent, #007BFF);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.wisata-link:hover {
+    color: var(--color-accent-dark, #0056b3);
+    letter-spacing: 0.5px;
+}
+
+/* Responsive untuk Tampilan Mobile */
+@media screen and (max-width: 992px) {
+    .wisata-item-elegant,
+    .wisata-item-elegant.reverse {
+        grid-template-columns: 1fr; /* Tumpuk menjadi 1 kolom */
+        gap: 30px;
+    }
+
+    .wisata-item-elegant.reverse .wisata-image-wrapper,
+    .wisata-item-elegant.reverse .wisata-text-wrapper {
+        grid-column: 1 / 2; /* Reset posisi grid */
+        grid-row: auto; 
+    }
+
+    .wisata-text-wrapper {
+        text-align: center;
+    }
+}
+
+/* AKHIR BAGIAN WISATA ELEGANT */

@@ -1,0 +1,27 @@
+/* TODO AWAL PETA WILAYAH */
+.map {
+  width: 100%;
+  padding-top: 50px; /* Memberi jarak dari galeri */
+  padding-bottom: 100px;
+  background-color: #F8F9FA;
+}
+
+.map-box .box:nth-child(1) {
+  margin-bottom: 50px;
+}
+
+.map-box .box:nth-child(1) h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #245e36;
+}
+
+.map-box .box:nth-child(1) p {
+  line-height: 2;
+}
+
+.map-box .box:nth-child(2) iframe {
+  border-radius: 10px; /* Memberi sudut yang sama dengan gambar galeri */
+  width: 100%;
+}
+/* TODO AKHIR PETA WILAYAH */

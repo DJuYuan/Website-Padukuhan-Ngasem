@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Admin - Ngasem</title>
+    
+    <link rel="stylesheet" href="dist/css/admin.css" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <main id="login-page" class="page-container active">
+        <div class="login-art">
+            <div>
+                <h1>Dashboard Admin</h1>
+                <p>Padukuhan Ngasem</p>
+            </div>
+        </div>
+        <div class="login-form-wrapper">
+            <div class="login-form-container">
+                <h2>Selamat Datang Kembali</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="Masukkan email Anda" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="Masukkan password Anda" required />
+                    </div>
+                    <p id="login-error" class="error-message"></p>
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+            </div>
+            <br>
+            <p>© 2025 Padukuhan Ngasem, Kemiri, Gunungkidul</p>
+        </div>
+    </main>
+
+    <main id="dashboard-page" class="page-container">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo/kelompok 49.png" alt="Logo KKN Kelompok 49" class="sidebar-logo">
+                <h2>NGASEM</h2>
+            </div>
+            <nav>
+                <ul class="nav-tabs" role="tablist">
+                    <li><a href="#berita" class="active" data-tab="berita" role="tab"><i class="fa-solid fa-newspaper"></i> <span>Berita</span></a></li>
+                    <li><a href="#galeri" data-tab="galeri" role="tab"><i class="fa-solid fa-images"></i> <span>Galeri</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <section class="dashboard-main">
+            <div class="main-header">
+                <h1>Dashboard</h1>
+                <p>Kelola konten website Anda dari sini.</p>
+            </div>
+
+            <div id="tab-berita" class="content-tab active" role="tabpanel">
+                <div class="form-section">
+                    <h3>Tambah Berita Baru</h3>
+                    <form id="add-berita-form">
+                        <div class="form-group">
+                            <label for="berita-judul">Judul Berita</label>
+                            <input type="text" id="berita-judul" placeholder="Contoh: Kerja Bakti Warga" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="berita-lokasi">Lokasi Berita</label>
+                            <input type="text" id="berita-lokasi" placeholder="Contoh: Yogyakarta" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="berita-deskripsi">Deskripsi Berita</label>
+                            <textarea id="berita-deskripsi" rows="6" placeholder="Tulis isi berita di sini..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="berita-gambar">Gambar Berita</label>
+                            <input type="file" id="berita-gambar" accept="image/*" required />
+                            <p id="upload-status" class="upload-status"></p>
+                        </div>
+                        <button type="submit">Tambah Berita</button>
+                    </form>
+                </div>
+                <div class="data-list">
+                    <h3>Daftar Berita</h3>
+                    <div id="berita-list"></div>
+                </div>
+            </div>
+
+            <div id="tab-galeri" class="content-tab" role="tabpanel">
+                <div class="form-section">
+                    <h3>Tambah Gambar Galeri</h3>
+                    <form id="add-galeri-form">
+                        <div class="form-group">
+                            <label for="galeri-gambar">Pilih Gambar</label>
+                            <input type="file" id="galeri-gambar" accept="image/*" required />
+                            <p id="galeri-upload-status" class="upload-status"></p>
+                        </div>
+                        <button type="submit">Tambah Gambar</button>
+                    </form>
+                </div>
+                <div class="data-list">
+                    <h3>Daftar Galeri</h3>
+                    <div id="galeri-list"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-storage-compat.js"></script>
+
+    <script src="dist/js/admin.js"></script>
+</body>
+</html>

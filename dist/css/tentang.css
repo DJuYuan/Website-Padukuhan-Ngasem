@@ -1,0 +1,52 @@
+/* TODO AWAL ABOUT */
+.about {
+  padding-top: 100px;
+  padding-bottom: 150px;
+  color: white;
+}
+
+.about-box .box:nth-child(1) h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.about-box .box:nth-child(1) p {
+  line-height: 2;
+}
+
+.about-box .box:nth-child(2) {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.about-box .box:nth-child(2) div img {
+  width: 100%;
+}
+
+.about-box .box:nth-child(2) div h2 {
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+.about-box .box:nth-child(2) div p {
+  line-height: 2;
+}
+
+.about-box .box:nth-child(2) div p:nth-child(2) {
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 992px) {
+  .about-box .box:nth-child(2) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .about-box .box:nth-child(2) div p {
+    font-size: 14px;
+  }
+}
+/* TODO AKHIR ABOUT */

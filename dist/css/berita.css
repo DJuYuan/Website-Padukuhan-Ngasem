@@ -1,0 +1,160 @@
+/* File: dist/css/detail-berita.css (Versi Perbaikan Tampilan) */
+
+/* Impor gaya dasar agar konsisten */
+@import url('style.css');
+
+/* Area konten utama */
+.content-area {
+    padding: 60px 0;
+    /* background-color: #F8F9FA; */
+}
+
+/* Wadah utama artikel, dibatasi lebarnya agar mudah dibaca */
+.berita-detail {
+    max-width: 750px; /* Lebar ideal untuk artikel teks */
+    margin: 0 auto;
+}
+
+/* Header artikel (info meta & judul) */
+.berita-detail-header {
+    margin-bottom: 30px;
+}
+
+.berita-meta {
+    display: flex;
+    gap: 20px;
+    color: #777;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.berita-meta span {
+    display: flex;
+    align-items: center;
+}
+.berita-meta i {
+    margin-right: 8px;
+    color: var(--color-primary);
+}
+
+.berita-detail-header h1 {
+    font-size: 2.8rem;
+    line-height: 1.25;
+    color: #245e36;
+    font-weight: 800;
+}
+
+/* PERBAIKAN UTAMA: Kontainer Gambar */
+.berita-image-container {
+    width: 100%;
+    margin-bottom: 40px;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #F8F9FA;
+    /* Menetapkan rasio aspek 16:9 agar ukuran gambar proporsional */
+    aspect-ratio: 16 / 9;
+}
+.berita-image-container img {
+    width: 100%;
+    height: 100%;
+    /* Memastikan gambar mengisi kontainer tanpa distorsi */
+    object-fit: cover;
+    display: block;
+}
+
+/* PERBAIKAN UTAMA: Isi/Tubuh Berita */
+.berita-body p {
+    font-size: 1.15rem; /* Sedikit lebih besar untuk kenyamanan membaca */
+    line-height: 1.9;  /* Jarak antar baris lebih lega */
+    color: #333;
+    margin-bottom: 25px; /* Jarak antar paragraf */
+}
+.berita-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* Gaya untuk pesan error atau loading */
+.berita-detail > p {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 50px 0;
+    color: #777;
+}
+
+/* TAMBAHKAN BLOK INI DI dist/css/berita.css */
+
+/* GAYA UNTUK TOMBOL KEMBALI */
+.back-button-container {
+    margin-top: -20px;
+}
+
+.btn-back {
+    position: fixed; /* Kunci utama: membuat tombol menempel di layar */
+    top: 40px;
+    left: 40px;
+    z-index: 100; /* Memastikan tombol di atas konten lain */
+    
+    display: inline-flex; /* Agar ikon dan teks sejajar */
+    align-items: center;
+    gap: 10px; /* Jarak antara ikon dan teks */
+    
+    background-color: var(--color-primary, #2c5b4c); /* Menggunakan warna aksen utama */
+    color: white;
+    
+    padding: 10px 20px;
+    border-radius: 50px; /* Membuat sudut sangat tumpul (pill shape) */
+    
+    font-weight: 600;
+    text-decoration: none;
+    
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #1f4236; /* Warna sedikit lebih gelap saat disentuh */
+    transform: translateY(-2px); /* Efek sedikit terangkat */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 1100px) {
+    .content-area { padding: 40px 40px; }
+    .berita-detail-header h1 { font-size: 2rem; }
+    .berita-body p { font-size: 1.1rem; }
+    .btn-back {
+        top: 20px;
+        left: 20px;
+    }
+
+    /* Sembunyikan teks "Kembali" untuk menghemat ruang */
+    .btn-back span {
+        display: none;
+    }
+
+    .btn-back {
+        /* 1. Hapus background dan shadow */
+        background-color: transparent;
+        box-shadow: none;
+
+        /* 2. Reset ukuran agar pas dengan ikon + area sentuh */
+        width: auto;
+        height: auto;
+        padding: 10px; /* Padding untuk memperbesar area yang bisa di-tap */
+        
+        /* 3. Atur ulang efek hover */
+        transition: transform 0.2s ease;
+    }
+
+    .btn-back:hover {
+        background-color: transparent; /* Pastikan background tidak muncul saat hover */
+        box-shadow: none;
+        transform: scale(1.15); /* Hanya perbesar ikon saat disentuh */
+    }
+
+    .btn-back i {
+        color: #333; /* Warna ikon menjadi gelap agar terlihat */
+        font-size: 1.6rem; /* Perbesar ukuran ikon panah */
+        margin: 0;
+        text-shadow: 0 1px 3px rgba(255,255,255,0.6);
+    }
+}
