@@ -69,6 +69,7 @@
     line-height: 1.9;  /* Jarak antar baris lebih lega */
     color: #333;
     margin-bottom: 25px; /* Jarak antar paragraf */
+    text-align: justify;
 }
 .berita-body p:last-child {
     margin-bottom: 0;
@@ -156,5 +157,66 @@
         font-size: 1.6rem; /* Perbesar ukuran ikon panah */
         margin: 0;
         text-shadow: 0 1px 3px rgba(255,255,255,0.6);
+    }
+}
+
+@media (max-width: 480px) {
+    .content-area { padding: 40px 40px; }
+    .berita-detail-header h1 { font-size: 2rem; }
+    .berita-body p { font-size: 1.1rem; }
+    .btn-back {
+        top: 20px;
+        left: 20px;
+    }
+
+    /* Sembunyikan teks "Kembali" untuk menghemat ruang */
+    .btn-back span {
+        display: none;
+    }
+
+    .btn-back {
+        /* 1. Hapus background dan shadow */
+        background-color: transparent;
+        box-shadow: none;
+
+        /* 2. Reset ukuran agar pas dengan ikon + area sentuh */
+        width: auto;
+        height: auto;
+        padding: 10px; /* Padding untuk memperbesar area yang bisa di-tap */
+        
+        /* 3. Atur ulang efek hover */
+        transition: transform 0.2s ease;
+    }
+
+    .btn-back:hover {
+        background-color: transparent; /* Pastikan background tidak muncul saat hover */
+        box-shadow: none;
+        transform: scale(1.15); /* Hanya perbesar ikon saat disentuh */
+    }
+
+    .btn-back i {
+        color: #333; /* Warna ikon menjadi gelap agar terlihat */
+        font-size: 1.6rem; /* Perbesar ukuran ikon panah */
+        margin: 0;
+        text-shadow: 0 1px 3px rgba(255,255,255,0.6);
+    }
+
+    .berita-meta {
+        display: flex;
+        gap: 20px;
+        color: #777;
+        margin-bottom: 15px;
+        font-size: 0.4rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .berita-meta span {
+    display: flex;
+    align-items: center;
+    }
+    .berita-meta i {
+        margin-right: 8px;
+        color: var(--color-primary);
     }
 }
