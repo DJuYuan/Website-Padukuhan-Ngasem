@@ -1,63 +1,91 @@
-const navbar = document.getElementById('navbar');
-const wisata = document.getElementById('wisata'); // Ambil elemen wisata utama
-const menu = document.querySelector(".menu");
-const hamburger = document.querySelector(".hamburger");
+document.addEventListener('DOMContentLoaded', () => {
 
-// 1. Logika untuk Navbar Transparan ke Solid
-if (navbar && wisata) {
-  // Tentukan titik pemicu, yaitu setinggi wisata
-  const triggerHeight = wisata.offsetHeight - navbar.offsetHeight;
+    // --- BAGIAN 1: INISIALISASI & KONFIGURASI ---
 
-  window.addEventListener('scroll', () => {
-  // Jika posisi scroll lebih besar dari tinggi wisata, tambahkan kelas .scrolled
-  if (window.scrollY > triggerHeight) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-  });
-}
+    // GANTI DENGAN KONFIGURASI FIREBASE ANDA YANG BENAR
+    const firebaseConfig = {
+        apiKey: "AIzaSyBuS5g74JnJFxwA39p56CcsQ6pplL1f_Aw",
+        authDomain: "website-padukuhan-ngasem.firebaseapp.com",
+        projectId: "website-padukuhan-ngasem",
+        storageBucket: "website-padukuhan-ngasem.firebasestorage.app",
+        messagingSenderId: "466900285971",
+        appId: "1:466900285971:web:4d032e311d285913181de6",
+        measurementId: "G-GG6MNRTM82"
+    };
 
-// 2. Logika untuk Hamburger Menu
-if (hamburger && menu) {
-  hamburger.addEventListener('click', () => {
-    menu.classList.toggle('menu-active');
-    hamburger.classList.toggle('is-active');
-            
-    // Tambahan: Jika menu mobile dibuka di atas, beri background pada navbar
-    if (menu.classList.contains('menu-active')) {
-      navbar.classList.add('menu-opened');
-    } else {
-      navbar.classList.remove('menu-opened');
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
     }
-  });
+    const db = firebase.firestore();
 
-  // Menutup menu jika link di dalam menu diklik
-  menu.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A' && menu.classList.contains('menu-active')) {
-      menu.classList.remove('menu-active');
-      hamburger.classList.remove('is-active');
-      navbar.classList.remove('menu-opened');
+    // --- BAGIAN 2: LOGIKA UI (NAVBAR, HAMBURGER, SCROLLSPY) ---
+
+    const navbar = document.querySelector('.navbar');
+    const menu = document.querySelector(".menu");
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelectorAll('.menu a');
+    const sections = document.querySelectorAll('section[id]');
+
+    // Logika untuk Navbar menjadi solid saat di-scroll
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 2150) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // --- LOGIKA BARU UNTUK MENU AKTIF (SCROLLSPY) ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Hapus kelas 'active' dari semua link
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                // Dapatkan ID dari seksi yang sedang terlihat
+                const id = entry.target.getAttribute('id');
+                // Cari link yang href-nya cocok dengan ID seksi
+                const activeLink = document.querySelector(`.menu a[href="#${id}"]`);
+                
+                // Tambahkan kelas 'active' ke link yang cocok
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+    }, {
+        // Memicu saat 50% dari seksi terlihat di tengah layar
+        rootMargin: '-50% 0px -50% 0px'
+    });
+
+    // "Awasi" setiap seksi yang memiliki ID
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+    // --- AKHIR LOGIKA SCROLLSPY ---
+
+
+    // Logika untuk Hamburger Menu
+    if (hamburger && menu) {
+        hamburger.addEventListener('click', () => {
+            menu.classList.toggle('menu-active');
+            hamburger.classList.toggle('is-active');
+            if (menu.classList.contains('menu-active')) {
+                navbar.classList.add('menu-opened');
+            } else {
+                navbar.classList.remove('menu-opened');
+            }
+        });
+
+        menu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' && menu.classList.contains('menu-active')) {
+                menu.classList.remove('menu-active');
+                hamburger.classList.remove('is-active');
+                navbar.classList.remove('menu-opened');
+            }
+        });
     }
-  });
-}
 
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBuS5g74JnJFxwA39p56CcsQ6pplL1f_Aw",
-  authDomain: "website-padukuhan-ngasem.firebaseapp.com",
-  projectId: "website-padukuhan-ngasem",
-  storageBucket: "website-padukuhan-ngasem.firebasestorage.app",
-  messagingSenderId: "466900285971",
-  appId: "1:466900285971:web:4d032e311d285913181de6",
-  measurementId: "G-GG6MNRTM82"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-// =======================================================
 // FUNGSI UNTUK MEMUAT BERITA DARI FIREBASE
 // =======================================================
 async function loadBerita() {
@@ -150,7 +178,6 @@ function initializeSwiper() {
 // =======================================================
 // JALANKAN FUNGSI KETIKA HALAMAN SELESAI DIMUAT
 // =======================================================
-document.addEventListener('DOMContentLoaded', () => {
   loadBerita();
   loadGaleri();
 });

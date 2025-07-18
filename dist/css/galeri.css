@@ -1,52 +1,94 @@
-/* TODO AWAL GALLERY */
+/* TODO AWAL GALLERY (VERSI PERBAIKAN FINAL - GAYA KOLASE) */
 .gallery {
   width: 100%;
-  min-height: 100vh;
-  padding-top: 150px;
-  padding-bottom: 100px;
-  background-color: #F8F9FA;
+  padding: 100px 0;
+  background-color: #f8f9fa; /* Memberi sedikit warna latar agar menonjol */
+}
+
+.gallery-box .box:nth-child(1) {
+    text-align: center; /* Menengahkan judul */
+    margin-bottom: 50px;
 }
 
 .gallery-box .box:nth-child(1) h1 {
   font-size: 40px;
   margin-bottom: 10px;
-  color: #245e36;
+  color: #2c3e50; /* Warna yang konsisten dengan seksi lain */
 }
 
 .gallery-box .box:nth-child(1) p {
   line-height: 2;
+  color: #777;
 }
 
+/* KUNCI UTAMA: Menggunakan CSS Grid untuk layout kolase */
 .gallery-box .box:nth-child(2) {
-  display: flex;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  display: grid;
+  /* Membuat 4 kolom di layar besar */
+  grid-template-columns: repeat(4, 1fr);
+  /* Menetapkan tinggi baris dasar agar konsisten */
+  grid-auto-rows: 250px;
   margin-top: 50px;
 }
 
+/* Menata link pembungkus, bukan gambar langsung */
+.gallery-box .box:nth-child(2) a {
+  display: block;
+  border-radius: 12px;
+  /* overflow: hidden; Memastikan gambar mengikuti sudut melengkung */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-box .box:nth-child(2) a:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Menata gambar di dalam link */
 .gallery-box .box:nth-child(2) img {
   width: 100%;
-  height: 250px;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  height: 100%;
+  object-fit: cover; /* Memastikan gambar mengisi ruang tanpa distorsi */
+  display: block; /* Menghilangkan spasi aneh di bawah gambar */
 }
 
-.gallery-box .box:nth-child(2) img:hover {
-  opacity: 0.8;
+/* --- DI SINI KEAJAIBANNYA TERJADI --- */
+/* Membuat beberapa gambar menjadi lebih besar untuk efek dinamis */
+
+/* Gambar ke-2: dibuat lebih tinggi (2 baris) */
+.gallery-box .box:nth-child(2) a:nth-child(2) {
+    grid-row: span 2;
 }
 
-@media screen and (max-width: 992px) {
-  .gallery-box .box:nth-child(2) img{
-    width: 100%;
-    height: 100px;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-  }
+/* Gambar ke-5: dibuat lebih lebar (2 kolom) */
+.gallery-box .box:nth-child(2) a:nth-child(5) {
+    grid-column: span 2;
+}
+
+/* Gambar ke-8: dibuat kotak besar (2x2) */
+.gallery-box .box:nth-child(2) a:nth-child(8) {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Gambar ke-11: dibuat lebih tinggi (2 baris) */
+.gallery-box .box:nth-child(2) a:nth-child(11) {
+    grid-row: span 2;
+}
+
+/* Membuatnya responsif di layar kecil */
+@media (max-width: 768px) {
+    .gallery-box .box:nth-child(2) {
+        /* Kembali ke 2 kolom di tablet */
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+    }
+
+    /* Reset ukuran khusus di mobile agar tidak berantakan */
+    .gallery-box .box:nth-child(2) a:nth-child(n) {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
 }
 /* TODO AKHIR GALLERY */

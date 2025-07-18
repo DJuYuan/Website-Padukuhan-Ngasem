@@ -33,6 +33,10 @@
   --color-black-footer: #111111;
 }
 
+html, body {
+  overflow-x: hidden; /* Mencegah scroll horizontal dan halaman kosong tambahan */
+}
+
 .container {
   width: 80%;
   margin-inline: auto;
@@ -196,8 +200,8 @@ padding-bottom: 120px;
 
 @media screen and (max-width: 768px) {
   .hero {
-    margin-top: 80px;
-    padding-bottom: 80px;
+    margin-top: 200px;
+    padding-bottom: 155px;
   }
 
   #t1 {
@@ -258,7 +262,7 @@ padding-bottom: 120px;
   height: 400px;
   text-align: center;
   font-size: 18px;
-  background: #F8F9FA;
+  /* background: #F8F9FA; */
   display: flex;
   justify-content: center;
   align-items: center;

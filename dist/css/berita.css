@@ -162,8 +162,8 @@
 
 @media (max-width: 480px) {
     .content-area { padding: 40px 40px; }
-    .berita-detail-header h1 { font-size: 2rem; }
-    .berita-body p { font-size: 1.1rem; }
+    .berita-detail-header h1 { font-size: 1.4rem; }
+    .berita-body p { font-size: 1rem; }
     .btn-back {
         top: 20px;
         left: 20px;
